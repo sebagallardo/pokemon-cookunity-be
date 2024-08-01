@@ -58,15 +58,17 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+# pgAdmin
+- localhost:5050
+- nestjs@localhost.com / nestjs
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+# Decissions
+- I noticed that every card had different resistance and weaknesses besides being the same type. I didn't implement something that shares this specifications, so each Pokemon has their own set of weakness and resistance. 
+- Since the cards don't have more that one weakness and resistance, this solution doesn't support multiple of them.
+- Decided to left out the migrations to reduce time.
+- Used TypeORM because is the recommended option and there are a lot of docs related.
+- Types could be validated to ensure they're part of the Pokemon world.
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
