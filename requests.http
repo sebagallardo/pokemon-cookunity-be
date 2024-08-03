@@ -1,22 +1,46 @@
 ### Get a pokemon
-GET http://localhost:3000/pokemon/3a1ff330-6a4b-4cf7-bc79-dd7fa36b181a
+GET http://localhost:3001/pokemon/3a1ff330-6a4b-4cf7-bc79-dd7fa36b181a
 
 ### Get all
-GET http://localhost:3000/pokemon
+GET http://localhost:3001/pokemon
 
 ### Create
-PUT http://localhost:3000/pokemon
+PUT http://localhost:3001/pokemon
 Content-Type: application/json
 
 {
     "name": "Pikachu",
     "type": "Electric",
     "hp": 60,
-    "power": 20
+    "power": 20,
+    "weaknessType": "Ground",
+    "weaknessMultiplier": 2,
+    "resistanceType": "Steel",
+    "resistanceDecrement": 20
 }
 
+### Update
+POST http://localhost:3001/pokemon
+Content-Type: application/json
+
+{
+    "id": "f1a7176a-7438-4241-b5da-cdddf0193e3b",
+    "weaknessMultiplier": 2
+}
+
+### Delete
+DELETE http://localhost:3001/pokemon/:id
+
+
+### Simulate a battle
+GET http://localhost:3001/pokemon/simulation/ca7c57b3-114a-4be6-b346-c8fbf48989c9/8d80dcc7-5644-4766-b1c5-1f147b6132c8
+
+### Analyze Pokemon
+GET http://localhost:3001/pokemon/analyze/8d80dcc7-5644-4766-b1c5-1f147b6132c8
+
+
 ### Bulk Create
-PUT http://localhost:3000/pokemon/bulk
+PUT http://localhost:3001/pokemon/bulk
 Content-Type: application/json
 
 {
@@ -27,7 +51,7 @@ Content-Type: application/json
             "hp": 60,
             "power": 20,
             "weaknessType": "Ground",
-            "weaknessMultiplier": 1,
+            "weaknessMultiplier": 2,
             "resistanceType": "Steel",
             "resistanceDecrement": 20
         },
@@ -37,7 +61,8 @@ Content-Type: application/json
             "hp": 180,
             "power": 120,
             "weaknessType": "Water",
-            "weaknessMultiplier": 2
+            "weaknessMultiplier": 2,
+            "rarity": "rare"
         },
         {
             "name": "Onix",
@@ -45,19 +70,20 @@ Content-Type: application/json
             "hp": 90,
             "power": 40,
             "weaknessType": "Plant",
-            "weaknessMultiplier": 1
+            "weaknessMultiplier": 1.5
         },
         {
             "name": "Feraligatr",
-            "type": "Electric",
+            "type": "Water",
             "hp": 180,
             "power": 160,
             "weaknessType": "Electric",
-            "weaknessMultiplier": 2
+            "weaknessMultiplier": 2,
+            "rarity": "rare"
         },
         {
             "name": "Sneasel",
-            "type": "Electric",
+            "type": "Dark",
             "hp": 70,
             "power": 20,
             "weaknessType": "Plant",
@@ -66,12 +92,13 @@ Content-Type: application/json
         {
             "name": "Scizor",
             "type": "Steel",
-            "hp": 60,
-            "power": 20,
+            "hp": 120,
+            "power": 60,
             "weaknessType": "Fire",
             "weaknessMultiplier": 2,
             "resistanceType": "Psychic",
-            "resistanceDecrement": 20
+            "resistanceDecrement": 20,
+            "rarity": "rare"
         },
         {
             "name": "Treecko",
@@ -79,31 +106,81 @@ Content-Type: application/json
             "hp": 40,
             "power": 10,
             "weaknessType": "Fire",
-            "weaknessMultiplier": 1,
+            "weaknessMultiplier": 1.5,
+            "resistanceType": "Water",
+            "resistanceDecrement": 30
+        },
+        {
+            "name": "Mudkip",
+            "type": "Water",
+            "hp": 40,
+            "power": 10,
+            "weaknessType": "Electric",
+            "weaknessMultiplier": 1.5,
+            "resistanceType": "Fire",
+            "resistanceDecrement": 30
+        },
+        {
+            "name": "Torchic",
+            "type": "Fire",
+            "hp": 40,
+            "power": 10,
+            "weaknessType": "Water",
+            "weaknessMultiplier": 1.5,
+            "resistanceType": "Electric",
+            "resistanceDecrement": 30
+        },
+        {
+            "name": "Grovyle",
+            "type": "Plant",
+            "hp": 40,
+            "power": 10,
+            "weaknessType": "Fire",
+            "weaknessMultiplier": 2,
+            "resistanceType": "Water",
+            "resistanceDecrement": 30
+        },
+        {
+            "name": "Combusken",
+            "type": "Fire",
+            "hp": 40,
+            "power": 10,
+            "weaknessType": "Water",
+            "weaknessMultiplier": 1.5,
+            "resistanceType": "Electric",
+            "resistanceDecrement": 30,
+            "rarity": "uncommon"
+        },
+        {
+            "name": "Marshtomp",
+            "type": "Water",
+            "hp": 40,
+            "power": 10,
+            "weaknessType": "Electric",
+            "weaknessMultiplier": 1.5,
+            "resistanceType": "Fire",
+            "resistanceDecrement": 30
+        },
+        {
+            "name": "Blaziken",
+            "type": "Fire",
+            "hp": 40,
+            "power": 10,
+            "weaknessType": "Water",
+            "weaknessMultiplier": 1.5,
+            "resistanceType": "Electric",
+            "resistanceDecrement": 30,
+            "rarity": "uncommon"
+        },
+        {
+            "name": "Sceptile",
+            "type": "Plant",
+            "hp": 40,
+            "power": 10,
+            "weaknessType": "Fire",
+            "weaknessMultiplier": 1.5,
             "resistanceType": "Water",
             "resistanceDecrement": 30
         }
     ]
 }
-
-### Update
-POST http://localhost:3000/pokemon
-Content-Type: application/json
-
-{
-    "id": "d05b6e6d-ed4f-4a1d-bf1d-ae6af93a01ed",
-    "type": "Water"
-}
-
-### Delete
-DELETE http://localhost:3000/pokemon/:id
-
-
-### Simulate a battle
-GET http://localhost:3000/pokemon/simulation/d05b6e6d-ed4f-4a1d-bf1d-ae6af93a01ed/12794566-890c-471b-a20a-a7ad8fa5c6fd
-
-### Simulate a battle (Pikachu vs Onix)
-GET http://localhost:3000/pokemon/simulation/5ccffec4-c36f-43cd-aa6e-cd407fb38cdd/e37b539b-16a8-49d1-9c09-f2ca96e9c2b9
-
-### Analyze Pokemon
-GET http://localhost:3000/pokemon/analyze/5ccffec4-c36f-43cd-aa6e-cd407fb38cdd

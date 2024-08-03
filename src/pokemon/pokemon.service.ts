@@ -25,12 +25,21 @@ export class PokemonService {
     private pokemonRepository: Repository<PokemonEntity>,
   ) {}
 
-  async create(pokemon: CreatePokemonDto): Promise<PokemonEntity> {
-    return this.pokemonRepository.save(pokemon);
+  async create(dto: CreatePokemonDto): Promise<PokemonEntity> {
+    const pokemon = this.pokemonRepository.create(dto);
+    pokemon.picture = await this.getPokemonPicture(dto.name);
+    await this.pokemonRepository.insert(pokemon);
+    return pokemon;
   }
 
-  async bulk(pokemon: CreatePokemonDto[]): Promise<PokemonEntity[]> {
-    const pokemons = await this.pokemonRepository.create(pokemon);
+  async bulk(dto: CreatePokemonDto[]): Promise<PokemonEntity[]> {
+    const entities = this.pokemonRepository.create(dto);
+    const pokemons = await Promise.all(
+      entities.map(async (p) => {
+        const picture = await this.getPokemonPicture(p.name);
+        return { ...p, picture };
+      }),
+    );
     await this.pokemonRepository.insert(pokemons);
     return pokemons;
   }
@@ -69,6 +78,19 @@ export class PokemonService {
 
   async remove(id: string): Promise<void> {
     await this.pokemonRepository.delete(id);
+  }
+
+  private async getPokemonPicture(name: string): Promise<string> {
+    try {
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}/`,
+      );
+      const data = await response.json();
+      return data.sprites.other.dream_world.front_default;
+    } catch (error) {
+      console.error('Error fetching pokemon picture', error);
+      return null;
+    }
   }
 
   async simulate(

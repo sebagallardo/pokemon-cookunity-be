@@ -68,6 +68,7 @@ $ npm run test:cov
 - Decided to left out the migrations to reduce time.
 - Used TypeORM because is the recommended option and there are a lot of docs related.
 - Types could be validated to ensure they're part of the Pokemon world.
+- Seeding left out to save time, bulk insert implemented instead.
 
 
 ## License
