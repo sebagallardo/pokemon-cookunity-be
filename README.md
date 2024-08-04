@@ -6,8 +6,16 @@ Pokemon API that allows to manage Pokemons Cards with authentication.
 - Node.js 18 or higher
 - npm
 
+# Used Technologies
+- NestJS
+- TypeORM
+- PostgreSQL
+- Docker
+- Swagger
+- JWT Authentication
+
 ## Running the app
-- Run the docker-compose file to start the database
+- Run the docker compose file to start the database
   ```bash
   $ docker compose up
   ```
@@ -27,6 +35,7 @@ Pokemon API that allows to manage Pokemons Cards with authentication.
   # production mode
   $ npm run start:prod
   ```
+- (Optional) You can use the `request.http` file to test the API using the REST Client extension for VSCode. There, you can find a set of example Pokemon cards to bulk create.
 
 # Utilities
 - Swagger API documentation
@@ -35,23 +44,17 @@ Pokemon API that allows to manage Pokemons Cards with authentication.
   - `localhost:5050`
   - credentials: `nestjs@localhost.com / nestjs`
 
-# Used Technologies
-- NestJS
-- TypeORM
-- PostgreSQL
-- Docker
-- Swagger
-- JWT Authentication
-
 # Future improvements
-- Add more validations to the entities.
-- Password hashing.
 - Testing
 - Filtering & Pagination
-- DB Seeding & Migrations
+- DB Seeding & Migrations. (I created a bulk create endpoint for now)
+- Improve error handling.
+- Password hashing.
+- Add more validations to the entities.
 - Improve Swagger documentation
 - I decided to only give one weakness and resistance to the cards to simplify the solution, so one improvement could be implement the possibility to add more than one.
 - Pokemon Types could be validated to ensure they're part of the Pokemon world.
+- Get more information from the Pokemon API to enrich the cards. Right now it's grabbing only the image.
 
 ## License
 
