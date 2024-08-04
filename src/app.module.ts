@@ -3,6 +3,9 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PokemonModule } from './pokemon/pokemon.module';
 import { PokemonEntity } from './pokemon/pokemon.entity';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
+import { UserEntity } from './users/user.entity';
 
 @Module({
   imports: [
@@ -18,9 +21,11 @@ import { PokemonEntity } from './pokemon/pokemon.entity';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_NAME,
-      entities: [PokemonEntity],
+      entities: [PokemonEntity, UserEntity],
       synchronize: true,
     }),
+    AuthModule,
+    UsersModule,
   ],
   controllers: [],
   providers: [],

@@ -11,8 +11,10 @@ import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { PokemonService } from './pokemon.service';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
 import { BulkCreatePokemonDto } from './dto/bulk-create-pokemon.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('pokemon')
+@ApiTags('pokemon')
 export class PokemonController {
   constructor(private pokemonService: PokemonService) {}
 
