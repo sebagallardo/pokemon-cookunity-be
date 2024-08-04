@@ -15,11 +15,13 @@ Pokemon API that allows to manage Pokemons Cards with authentication.
 - JWT Authentication
 
 ## Running the app
+
+- Create a .env file following the `.env.example` file
+  
 - Run the docker compose file to start the database
   ```bash
   $ docker compose up
   ```
-- Create a .env file following the `.env.example` file
 - Install dependencies
   ```bash
   $ npm install
