@@ -1,12 +1,39 @@
-### Get a pokemon
-GET http://localhost:3001/pokemon/3a1ff330-6a4b-4cf7-bc79-dd7fa36b181a
+### Sign up
+POST http://localhost:3001/auth/signup
+Content-Type: application/json
+{
+    "email": "asd@asd.com",
+    "username": "asd",
+    "password": "asd"
+}
+
+### Login
+# @name login
+POST http://localhost:3001/auth/login
+Content-Type: application/json
+
+{
+    "email": "asd@asd.com",
+    "password": "asd"
+}
+### Variable access token
+@accessToken = {{login.response.body.$.accessToken}}
+
+### Replace this with a Pokemon ID
+@pokemon = 41f8e6ea-3a39-4f89-8716-9dbc3d2d1ae6
 
 ### Get all
 GET http://localhost:3001/pokemon
+Authorization: Bearer {{accessToken}}
+
+### Get a pokemon
+GET http://localhost:3001/pokemon/{{pokemon}}
+Authorization: Bearer {{accessToken}}
 
 ### Create
 PUT http://localhost:3001/pokemon
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 {
     "name": "Pikachu",
@@ -22,26 +49,31 @@ Content-Type: application/json
 ### Update
 POST http://localhost:3001/pokemon
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 {
-    "id": "f1a7176a-7438-4241-b5da-cdddf0193e3b",
+    "id": "{{pokemon}}",
     "weaknessMultiplier": 2
 }
 
 ### Delete
-DELETE http://localhost:3001/pokemon/:id
+DELETE http://localhost:3001/pokemon/{{pokemon}}
+Authorization: Bearer {{accessToken}}
 
 
 ### Simulate a battle
-GET http://localhost:3001/pokemon/simulation/ca7c57b3-114a-4be6-b346-c8fbf48989c9/8d80dcc7-5644-4766-b1c5-1f147b6132c8
+GET http://localhost:3001/pokemon/simulation/{{pokemon}}/99a0efce-19e0-4baa-bbb0-dae778b37706
+Authorization: Bearer {{accessToken}}
 
 ### Analyze Pokemon
-GET http://localhost:3001/pokemon/analyze/8d80dcc7-5644-4766-b1c5-1f147b6132c8
+GET http://localhost:3001/pokemon/analyze/{{pokemon}}
+Authorization: Bearer {{accessToken}}
 
 
 ### Bulk Create
 PUT http://localhost:3001/pokemon/bulk
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 {
     "pokemons": [
